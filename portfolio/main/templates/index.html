@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishika - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #4a9eff;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 6rem 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero {
+            flex-direction: column;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.7rem;
+            color: #888;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .achievement-badge {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 1px solid #3a3a3a;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            color: #ffd700;
+            margin-top: 1rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1);
+        }
+
+        .content-wrapper {
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #ffffff;
+            font-weight: 600;
+            letter-spacing: -1px;
+            text-align: center;
+        }
+
+        .education-experience {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .info-card {
+            background: #141414;
+            padding: 3rem;
+            border: 1px solid #1f1f1f;
+            border-radius: 16px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .info-card:hover::before {
+            left: 100%;
+        }
+
+        .info-card:hover {
+            border-color: #4a9eff;
+            transform: translateY(-8px);
+            background: #1a1a1a;
+            box-shadow: 0 12px 35px rgba(74, 158, 255, 0.2);
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card-header i {
+            font-size: 3.5rem;
+            color: #4a9eff;
+        }
+
+        .info-card h3 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card .institution {
+            font-size: 1.2rem;
+            color: #4a9eff;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-card .duration {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 1.2rem;
+        }
+
+        .info-card .details {
+            color: #aaa;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .info-card .cgpa {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 1px solid #3a3a3a;
+            border-radius: 30px;
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .skill-card {
+            background: #141414;
+            padding: 3rem 2rem;
+            border: 1px solid #1f1f1f;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            border-color: #4a9eff;
+            transform: translateY(-8px);
+            background: #1a1a1a;
+            box-shadow: 0 12px 35px rgba(74, 158, 255, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 4.5rem;
+            color: #4a9eff;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover i {
+            transform: scale(1.2);
+        }
+
+        .skill-card h3 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: #141414;
+            border: 1px solid #1f1f1f;
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.05), transparent);
+            transition: left 0.6s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            border-color: #4a9eff;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(74, 158, 255, 0.25);
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            color: #ffffff;
+        }
+
+        .project-card p {
+            color: #888;
+            margin-bottom: 1.8rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .tech-tag {
+            font-size: 0.85rem;
+            padding: 0.4rem 1rem;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 20px;
+            color: #4a9eff;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4a9eff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-link:hover {
+            gap: 0.8rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .social-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 2.5rem 3rem;
+            background: #141414;
+            border: 1px solid #1f1f1f;
+            color: #e0e0e0;
+            text-decoration: none;
+            border-radius: 16px;
+            transition: all 0.4s;
+            font-size: 1.1rem;
+            min-width: 160px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-btn:hover::before {
+            left: 100%;
+        }
+
+        .social-btn i {
+            font-size: 4rem;
+            transition: all 0.4s;
+        }
+
+        .social-btn:hover {
+            border-color: #4a9eff;
+            background: #1a1a1a;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(74, 158, 255, 0.3);
+        }
+
+        .social-btn:hover i {
+            transform: scale(1.25);
+            color: #4a9eff;
+        }
+
+        .social-btn.linkedin:hover i {
+            color: #0077b5;
+        }
+
+        .social-btn.leetcode:hover i {
+            color: #ffa116;
+        }
+
+        .social-btn.gmail:hover i {
+            color: #ea4335;
+        }
+        .contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2px;
+    padding: 1rem;
+    font-size: 1.1rem;
+    color: #aaa;
+    background: #141414;
+    border-top: 1px solid #1f1f1f;
+}
+
+
+        .social-btn.github:hover i {
+            color: #ffffff;
+        }
+
+        .social-btn.codolio:hover i {
+            color: #00d4ff;
+        }
+
+        .resume-section {
+            text-align: center;
+        }
+
+        .resume-preview {
+            background: #141414;
+            border: 1px solid #1f1f1f;
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            transition: all 0.4s;
+        }
+
+        .resume-preview:hover {
+            border-color: #4a9eff;
+            box-shadow: 0 15px 40px rgba(74, 158, 255, 0.2);
+        }
+
+        .resume-preview iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.5rem 3.5rem;
+            background: #4a9eff;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.4s;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(74, 158, 255, 0.3);
+        }
+
+        .resume-btn:hover {
+            background: #3a8eef;
+            transform: scale(1.08);
+            box-shadow: 0 15px 45px rgba(74, 158, 255, 0.5);
+        }
+
+        .resume-btn i {
+            font-size: 1.8rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .education-experience {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .social-links {
+                gap: 1.5rem;
+            }
+
+            .social-btn {
+                padding: 2rem 2.5rem;
+                min-width: 140px;
+            }
+
+            .social-btn i {
+                font-size: 3.2rem;
+            }
+
+            .skill-card i {
+                font-size: 3.5rem;
+            }
+
+            .info-card-header i {
+                font-size: 2.8rem;
+            }
+            
+
+            .resume-preview iframe {
+                height: 400px;
+            }
+                    
+
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Connect</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div>
+            <h1>Ishika</h1>
+            <p class="subtitle">ML Enthusiast | Python Specialist | Aspiring Data Scientist</p>
+            <div class="achievement-badge">
+                🏆 Top 100% Scholar - 3 Years Consecutive at Sharda University
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="content-wrapper">
+            <h2>Education & Experience</h2>
+            <div class="education-experience">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <h3>Bachelor of Technology</h3>
+                            <p class="institution">Sharda University</p>
+                        </div>
+                    </div>
+                    <p class="duration">Currently in 3rd Year | 2022 - 2026</p>
+                    <p class="details">
+                        Computer Science & Engineering<br>
+                        Specialization: Data Science and Analytics
+                    </p>
+                    <span class="cgpa">CGPA: 9.56 / 10</span>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <h3>Data Analyst Intern</h3>
+                            <p class="institution">Bajaj Capital Ltd</p>
+                        </div>
+                    </div>
+                    <p class="duration">May 2024 - July 2024 (2 months)</p>
+                    <p class="details">
+                        • Developed interactive dashboards and reports using Power BI for data visualization and business intelligence<br>
+                        • Designed and implemented logic for a folio management system to streamline investment portfolio tracking<br>
+                        • Analyzed financial data to derive actionable insights for business decision-making
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="fas fa-school"></i>
+                        <div>
+                            <h3>Senior Secondary (12th)</h3>
+                            <p class="institution">St. Giri Sr. Sec. School</p>
+                        </div>
+                    </div>
+                    <p class="duration">2022-23</p>
+                    <p class="details">
+                        Science Stream<br>
+                        Physics, Chemistry, Mathematics , Biology , Computer Science
+                    </p>
+                    <span class="cgpa">Score: 95.6%</span>
+                </div>
+
+
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="content-wrapper">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Django</h3>
+                    <p>Backend Development</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-flask"></i>
+                    <h3>Flask</h3>
+                    <p>Backend Development</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Power BI</h3>
+                    <p>Data Analysis</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <p>Core Programming</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                    <p>Frontend Development</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL</h3>
+                    <p>Database Management</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Machine Learning</h3>
+                    <p>Model Development</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-git-alt"></i>
+                    <h3>Git</h3>
+                    <p>Version Control</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>DSA</h3>
+                    <p>Among top 20% coders on LeetCode</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="content-wrapper">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>AI Quiz Generator</h3>
+                    <p>AI-powered web application that generates customized quizzes on any topic. Features real-time submission tracking, shareable quiz links, and detailed performance reports. Deployed on Render with PostgreSQL database.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">Gemini API</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                    <a href="https://github.com/18Ishika/Quiz-Generator" class="project-link" target="_blank">
+                        View on GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="https://quiz-generator-1v2t.onrender.com" class="project-link" target="_blank">
+                        Live Demo <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3>Django Social Media App</h3>
+                    <p>Twitter-inspired web application with user authentication, tweet creation with images, and real-time search functionality. Built with Django and Bootstrap for clean, mobile-friendly design.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">Bootstrap 5</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    <a href="https://github.com/18Ishika/Social_media_app_using_django" class="project-link" target="_blank">
+                        View on GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3>Multi-Session Chatbot</h3>
+                    <p>Intelligent chatbot with Google OAuth authentication and multi-session support. Features LangChain-powered context-aware responses, JWT security, and separate chat histories for each session.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">Google OAuth</span>
+                        <span class="tech-tag">SQLAlchemy</span>
+                    </div>
+                    <a href="https://github.com/18Ishika/Chatbot" class="project-link" target="_blank">
+                        View on GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3>LangChain RAG Projects</h3>
+                    <p>Two LangChain projects using Gemini 1.5: A simple educational chatbot and an advanced RAG-based PDF chatbot with document upload and query capabilities using Chroma vector store.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">Gemini 1.5</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Chroma DB</span>
+                    </div>
+                    <a href="https://github.com/18Ishika/Langchain-Projects" class="project-link" target="_blank">
+                        View on GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3>Machine Learning Projects</h3>
+                    <p>Collection of ML projects including Loan Status Prediction using applicant details and credit history, and Spam Detection using NLP techniques with scikit-learn and NLTK.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NLTK</span>
+                    </div>
+                    <a href="https://github.com/18Ishika/Machine-Learning" class="project-link" target="_blank">
+                        View on GitHub <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="resume-section">
+        <div class="content-wrapper">
+            <h2>Resume</h2>
+            <p style="color: #888; margin-bottom: 2rem; font-size: 1.2rem;">
+                Preview my resume below or download the complete PDF version.
+            </p>
+            <div class="resume-preview">
+                <iframe src="/static/resume.pdf?v=2" type="application/pdf"></iframe>
+            </div>
+            <a href="/static/resume.pdf?v=2" class="resume-btn" download>
+                <i class="fas fa-download"></i>
+                Download Resume (PDF)
+            </a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="content-wrapper" style="text-align: center;">
+            <h2>Let's Connect</h2>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/ishika-70bb402b0/" class="social-btn linkedin" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://leetcode.com/u/user1677uw/" class="social-btn leetcode" target="_blank">
+                    <i class="fas fa-code"></i>
+                    <span>LeetCode</span>
+                </a>
+                <a href="https://github.com/18Ishika" class="social-btn github" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://codolio.com/profile/YOUR_CODOLIO_USERNAME" class="social-btn codolio" target="_blank">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Codolio</span>
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=itz.ishgupta@gmail.com" class="social-btn gmail" target="_blank">
+                    <i class="fas fa-envelope"></i>
+                    <span>Gmail</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <div class='contact'> Contact : +91-9911947946</div>
+
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
