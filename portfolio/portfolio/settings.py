@@ -125,4 +125,4 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-ALLOWED_HOSTS = ['portfolio.onrender.com']
+ALLOWED_HOSTS = ['portfolio.onrender.com','127.0.0.1']
